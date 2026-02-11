@@ -212,14 +212,17 @@ function finishExam(e, isTimeout = false) {
 
   clearInterval(timerInterval);
 
+  clearInterval(timerInterval);
+
+  // Calcular Score (ANTES de bloquear inputs, porque inputs disabled no se envían)
+  const formData = new FormData(examForm);
+
   // Bloquear TODO
   const inputs = examForm.querySelectorAll("input");
   inputs.forEach((input) => (input.disabled = true));
   submitBtn.disabled = true;
   submitBtn.textContent = isTimeout ? "¡Tiempo Agotado!" : "Examen Finalizado";
 
-  // Calcular Score
-  const formData = new FormData(examForm);
   let score = 0;
 
   randomizedQuestions.forEach((q) => {
@@ -256,7 +259,7 @@ function finishExam(e, isTimeout = false) {
   }
 
   // Show Modal
-  showResultModal(score, allQuestions.length, isTimeout);
+  showResultModal(score, allQuestions.length, isTimeout, formData);
 
   // Confetti si es perfecto
   if (score === allQuestions.length) {
@@ -264,7 +267,7 @@ function finishExam(e, isTimeout = false) {
   }
 }
 
-function showResultModal(score, total, isTimeout) {
+function showResultModal(score, total, isTimeout, formData) {
   const modal = document.getElementById("resultModal");
   const title = document.getElementById("modalTitle");
   const scoreDisplay = document.getElementById("modalScore");
@@ -280,7 +283,7 @@ function showResultModal(score, total, isTimeout) {
 
   // Generate Summary
   summary.innerHTML = "";
-  const formData = new FormData(document.getElementById("examForm"));
+  // const formData ya no se necesita, usamos el pasado como argumento
 
   randomizedQuestions.forEach((q, index) => {
     const li = document.createElement("li");
