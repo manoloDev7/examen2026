@@ -41,4 +41,4 @@ Un sistema de evaluación interactivo construido con HTML, CSS (Vanilla) y JavaS
 
 ---
 
-Hecho con ❤️ por [Tu Nombre]
+Hecho por Manolo Cisneros
