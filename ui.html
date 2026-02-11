@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modo Oscuro y Claro</title>
+  <style>
+    /* 🎨 Paleta base (modo oscuro por defecto) */
+    :root {
+      --bg-dark: oklch(0.1 0 264);
+      --bg: oklch(0.2 0 264);
+      --bg-light: oklch(0.3 0 264);
+
+      --text: oklch(0.96 0 264);
+      --text-muted: oklch(0.76 0 264);
+
+      --shadow-small: inset 0 1px 2px #ffffff30, 0 1px 2px #00000030, 0 2px 4px #00000020;
+      --shadow-medium: inset 0 1px 2px #ffffff50, 0 2px 4px #00000030, 0 4px 8px #00000015;
+      --shadow-large: inset 0 1px 2px #ffffff70, 0 4px 6px #00000030, 0 6px 10px #00000015;
+    }
+
+    /* ☀️ Modo claro */
+    body.light-mode {
+      --bg-dark: oklch(0.92 0 264);
+      --bg: oklch(0.96 0 264);
+      --bg-light: oklch(1 0 264);
+
+      --text: oklch(0.15 0 264);
+      --text-muted: oklch(0.4 0 264);
+
+      --shadow-small: inset 0 1px 2px #00000010, 0 1px 2px #ffffff70, 0 2px 4px #00000010;
+      --shadow-medium: inset 0 1px 2px #00000015, 0 2px 4px #ffffff70, 0 4px 8px #00000010;
+      --shadow-large: inset 0 1px 2px #00000020, 0 4px 6px #ffffff60, 0 6px 10px #00000010;
+    }
+
+    /* 🌐 Estilos generales */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text);
+      margin: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
+
+    .conte1 {
+      background-color: var(--bg);
+      color: var(--text);
+      padding: 15px;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: row;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .conte1_1, .conte1_2, .conte1_3 {
+      background-color: var(--bg-light);
+      color: var(--text);
+      padding: 10px;
+      margin: 5px;
+      border-radius: 5px;
+      width: 100px;
+      text-align: center;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .conte1_1 { box-shadow: var(--shadow-small); }
+    .conte1_2 { box-shadow: var(--shadow-medium); }
+    .conte1_3 { box-shadow: var(--shadow-large); }
+
+    /* 🔘 Botón de cambio de modo */
+    #toggleMode {
+      background-color: var(--bg-light);
+      color: var(--text);
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      cursor: pointer;
+      box-shadow: var(--shadow-small);
+      transition: 0.3s;
+    }
+
+    #toggleMode:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <button id="toggleMode">Cambiar a modo claro ☀️</button>
+
+  <div class="conte1">
+    <div class="conte1_1"><h3>Tarjeta 1</h3></div>
+    <div class="conte1_2"><h3>Tarjeta 2</h3></div>
+    <div class="conte1_3"><h3>Tarjeta 3</h3></div>
+  </div>
+
+  <script>
+    const boton = document.getElementById('toggleMode');
+    boton.addEventListener('click', () => {
+      document.body.classList.toggle('light-mode');
+      if (document.body.classList.contains('light-mode')) {
+        boton.textContent = 'Cambiar a modo oscuro 🌙';
+      } else {
+        boton.textContent = 'Cambiar a modo claro ☀️';
+      }
+    });
+  </script>
+</body>
+</html>

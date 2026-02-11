@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Examen de Programación Web</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📝</text></svg>"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  </head>
+  <body>
+    <!-- Login Screen -->
+    <div id="loginOverlay">
+      <div class="login-box">
+        <h2>Examen de Acceso</h2>
+        <p>Introduce la clave para comenzar</p>
+        <input type="password" id="accessKey" placeholder="Clave de acceso" />
+        <button onclick="checkAccess()">Comenzar Examen</button>
+        <p
+          id="loginError"
+          style="color: var(--danger); display: none; margin-top: 10px"
+        >
+          Clave incorrecta
+        </p>
+      </div>
+    </div>
+
+    <!-- Main App -->
+    <div id="appContainer">
+      <header>
+        <h1>Examen Web</h1>
+        <div class="controls">
+          <div id="timer" class="timer-container">30:00</div>
+          <button id="toggleMode">☀️</button>
+        </div>
+      </header>
+
+      <main>
+        <form id="examForm">
+          <div id="questionsContainer"></div>
+          <button type="submit" class="submit-btn" id="submitBtn">
+            Enviar Examen
+          </button>
+        </form>
+
+        <div id="result"></div>
+      </main>
+
+      <footer>
+        <p>
+          &copy; 2026 Examen de Programación Web. Hecho por Manolo
+          Cisneros.
+        </p>
+      </footer>
+    </div>
+
+    <!-- Toast Element -->
+    <div id="toast"></div>
+
+    <!-- Result Modal -->
+    <div id="resultModal">
+      <div class="modal-content">
+        <h2 id="modalTitle">Examen Finalizado</h2>
+        <div class="modal-score" id="modalScore">0/10</div>
+        <p id="modalMessage">Mensaje</p>
+        <ul class="summary-list" id="modalSummary"></ul>
+        <div class="modal-actions">
+          <button class="close-btn" onclick="closeModal()">
+            Cerrar y Revisar
+          </button>
+          <button class="retry-btn" onclick="resetExam()">
+            Intentar de Nuevo 🔄
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
